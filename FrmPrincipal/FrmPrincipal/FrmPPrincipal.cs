@@ -84,8 +84,6 @@ namespace FrmPrincipal
 
                 try
                 {
-                    // Iniciamos conexión
-                    conn.Open();
 
                     // Se definen los parámetros necesarios para el Stored Procedure
                     cmd.Parameters.Add(new SqlParameter("@ProductName", SqlDbType.NVarChar, 50));
@@ -116,8 +114,14 @@ namespace FrmPrincipal
                     cmd.Parameters.Add(new SqlParameter("@Valoracion", SqlDbType.Int));
                     cmd.Parameters["@Valoracion"].Value = nupValoracion.Value;
 
+                    // Iniciamos conexión
+                    conn.Open();
+
                     // Se ejecuta el Query
                     cmd.ExecuteNonQuery();
+
+                    // Mensaje de confirmación
+                    MessageBox.Show("Reseña agregada con éxito", "Reseña/Análisis", MessageBoxButtons.OK);
 
                     // Se limpian los campos
                     txtNombreUsuario.Text = "";
